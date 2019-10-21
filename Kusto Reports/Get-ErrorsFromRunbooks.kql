@@ -1,0 +1,15 @@
+//
+// This is a custom query the returns a list of all the stack trace errors (7 Days Ago)
+//
+customEvents |
+where todatetime(timestamp) > ago(7d) |
+where customDimensions.EventType == "ERROR" |
+project RunbookName=name,
+Activity=customDimensions.Activity,
+Category=customDimensions.Category,
+Char=customDimensions.Char,
+Component=customDimensions.Component,
+DateTimeLogged=customDimensions.DateTimeLogged,
+DateTimeLoggedUTC=customDimensions.DateTimeLoggedUTC,
+Error=customDimensions.Error,
+Line=customDimensions.Line

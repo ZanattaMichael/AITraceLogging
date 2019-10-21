@@ -1,0 +1,13 @@
+//
+// This is a custom query the returns a list of all the stack trace errors (7 Days Ago)
+//
+// This returns a formatted list of TimeStamp, Event Type, Script/RunbookName, Detail, Component and Breakdown of the Event (Other custom attributes that are needed)
+customEvents
+| project EventType=customDimensions.EventType,
+          RunbookName=name,
+          Detail=iif(isnotnull(customDimensions.Detail),customDimensions.Detail,customDimensions.Error),
+          customDimensions.Component,
+          timestamp,
+          Details=customDimensions
+| order by timestamp asc
+
