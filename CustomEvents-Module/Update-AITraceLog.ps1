@@ -1,5 +1,5 @@
 #region Update-AITraceLog
-#function to send an Applaction Insights Log Event
+#function to send an Applaction Insights Log Event using PSCustomEvents
 #----------------------------------------------------------------------------------------------------
 function Update-AITraceLog() {
     <#
