@@ -25,7 +25,7 @@ function Update-AITraceLog() {
 #>
 
     #Requires -version 5.1
-    #Requires -Modules PSAppInsight
+    #Requires -Modules PSAppInsights
     #------------------------------------------------------------------------------------------------
     [cmdletbinding(
         DefaultParameterSetName = 'Standard'
@@ -95,11 +95,9 @@ function Update-AITraceLog() {
         # Attempt to Create a connection to App Insights.
         if (-not( $Global:AISingleton.InstrumentationKey ) -and (($InstrumentationKey) -or ($AppInsightsInstrumentationKey))) {
 
-            # Write Debug
-            Write-Debug "Missing `$Global:AISingleton.InstrumentationKey is Missing, creating a connection to App Insights."
-
             # Create the Client with the InstrumentationKey
             New-AIClient -InstrumentationKey $InstrumentationKey
+
         } 
 
         #Retrieve the calling function using the call stack
@@ -204,9 +202,6 @@ function Update-AITraceLog() {
             }
         }
 
-        # If the Parameter "-pesterShouldReturnParams" is called, return the parameters
-        if ($pesterShouldReturnParams) { Write-Output $params }
-
         # Raise the Event/Exception
         try {
             # Run the PowerShell String and Splat the Parameters in.
@@ -214,7 +209,10 @@ function Update-AITraceLog() {
         } Catch {
             Write-Error $_
         }
-        
+
+        # If the Parameter "-pesterShouldReturnParams" is called, return the parameters
+        if ($pesterShouldReturnParams) { Write-Output $params }        
+
     }
 }
 #endregion Update-AITraceLog
