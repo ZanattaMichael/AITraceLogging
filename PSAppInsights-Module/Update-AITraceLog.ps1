@@ -93,12 +93,12 @@ function Update-AITraceLog() {
         # Validate that New-AIClient has been setup.
         # If there is no InstrumentationKey in the Global Object used by PSAppInsights, however one was provided by the module:
         # Attempt to Create a connection to App Insights.
-        if (-not( $Global:AISingleton.InstrumentationKey ) -and (($InstrumentationKey) -or ($AppInsightsInstrumentationKey))) {
+        if (-not( $Global:AISingleton.Client.InstrumentationKey ) -and (($InstrumentationKey) -or ($AppInsightsInstrumentationKey))) {
 
             # Create the Client with the InstrumentationKey
-            New-AIClient -InstrumentationKey $InstrumentationKey
+            $null = New-AIClient -InstrumentationKey $InstrumentationKey
 
-        } 
+        }
 
         #Retrieve the calling function using the call stack
         $callStack = Get-PSCallStack
