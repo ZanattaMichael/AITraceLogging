@@ -87,7 +87,7 @@ function Update-AITraceLog() {
 
         # Throw an Error if the ResourceName parameter is missing
         if (-not($ResourceName)) {
-            Throw "Missing -ResourceName Parameter or Missing `$RunbookName variable."
+            Throw "Missing -ResourceName Parameter or Missing `$ScriptName variable."
         }
         
         # Validate that New-AIClient has been setup.

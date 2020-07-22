@@ -7,7 +7,7 @@ customEvents
           RunbookName=name,
           Detail=iif(isnotnull(customDimensions.Detail),customDimensions.Detail,customDimensions.Error),
           customDimensions.Component,
-          timestamp,
-          Details=customDimensions
+          DateTimeLogged=customDimensions.DateTimeLogged,
+          Details=customDimensions,
+          timestamp
 | order by timestamp asc
-

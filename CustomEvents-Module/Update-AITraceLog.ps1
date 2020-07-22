@@ -488,3 +488,5 @@ function Update-AITraceLog() {
     }
 }
 #endregion Update-AITraceLog
+
+write-host "A"
